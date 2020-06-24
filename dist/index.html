@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Hoş geldiniz...</title>
+	<style>
+		.button {
+			display: inline;
+			padding: 20px;
+			border: 1px solid #777;
+			background-color: #ddd;
+			border-radius: 5px;
+			font-family: font-family: 'Open Sans', sans-serif;
+		}
+
+		.one {
+			opacity: 0;
+			-webkit-animation: dot 1.3s infinite;
+			-webkit-animation-delay: 0.0s;
+			animation: dot 1.3s infinite;
+			font-family: font-family: 'Open Sans', sans-serif;
+			animation-delay: 0.0s;
+		}
+
+		.two {
+			opacity: 0;
+			-webkit-animation: dot 1.3s infinite;
+			-webkit-animation-delay: 0.2s;
+			animation: dot 1.3s infinite;
+			animation-delay: 0.2s;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+		}
+
+		.three {
+			opacity: 0;
+			-webkit-animation: dot 1.3s infinite;
+			-webkit-animation-delay: 0.3s;
+			animation: dot 1.3s infinite;
+			animation-delay: 0.3s;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+		}
+
+		@-webkit-keyframes dot {
+			0% {
+				opacity: 0;
+			}
+
+			50% {
+				opacity: 0;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+
+		@keyframes dot {
+			0% {
+				opacity: 0;
+			}
+
+			50% {
+				opacity: 0;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+
+		p {
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		.images {
+			display: none;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+		}
+
+		img {
+			width: 50%;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+	<center>
+		<p>
+			Lütfen console'u kontrol ediniz<span class="one">.</span><span class="two">.</span><span class="three">.</span>
+		</p>
+
+		<div class="images" api-images></div>
+
+
+	</center>
+
+	<script>
+		axios.get('/api')
+			.then(function (response) {
+				let data = response.data;
+				console.log("data >>", data);
+
+				let _images = document.querySelector('[api-images]');
+
+				let _html = '';
+
+				data.forEach((item, index) => {
+					_html += `<img src="http://localhost:4001/images/${item}" />`;
+					if (index = data.length - 1) {
+						_images.innerHTML = _html;
+						_images.style.display = 'flex';
+					}
+				});
+
+			});
+	</script>
+</body>
+
+</html>
